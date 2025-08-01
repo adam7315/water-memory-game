@@ -8,7 +8,7 @@ body {
 }
 
 h1 {
-  font-size: 2.2em;
+  font-size: 2.5em;
   margin-bottom: 10px;
 }
 
@@ -17,7 +17,7 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .controls button {
@@ -28,8 +28,6 @@ h1 {
   border-radius: 8px;
   font-size: 1em;
   cursor: pointer;
-  flex: 1 1 100px;
-  max-width: 200px;
 }
 
 .status {
@@ -37,14 +35,14 @@ h1 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
 }
 
-.score, .team-status, .timer {
-  font-size: 1em;
-  padding: 10px 16px;
+.score {
+  font-size: 1.2em;
+  padding: 12px 20px;
   border-radius: 10px;
-  min-width: 130px;
+  min-width: 150px;
   text-align: center;
 }
 
@@ -59,9 +57,13 @@ h1 {
 }
 
 .team-status {
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  min-width: 150px;
+  text-align: center;
   background-color: #1e1e1e;
   border: 3px solid transparent;
-  font-weight: bold;
 }
 
 .team-status.blue-turn {
@@ -74,28 +76,34 @@ h1 {
 
 .timer {
   background-color: #3e3e3e;
-  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  min-width: 150px;
+  text-align: center;
 }
 
+/* 調整卡牌區塊為等寬四欄 */
 .game-board {
   display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   margin-top: 20px;
-  padding-bottom: 40px;
+  padding: 0 10px;
 }
 
-/* 預設卡片尺寸 */
+/* 卡片自動撐滿區塊 */
 .card {
-  width: 22vw;
-  max-width: 100px;
+  width: 100%;
   aspect-ratio: 5 / 6;
   background-color: #111829;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
   perspective: 1000px;
-  transition: transform 0.5s;
+  transition: transform 0.3s ease;
 }
 
 .card img {
@@ -109,7 +117,7 @@ h1 {
   bottom: 6px;
   right: 6px;
   color: #00ff99;
-  font-size: 20px;
+  font-size: 22px;
   display: none;
 }
 
@@ -156,21 +164,4 @@ h1 {
 
 .hidden {
   display: none;
-}
-
-/* 🎯 響應式卡片排列數量（根據螢幕寬度自動調整列數） */
-@media (max-width: 600px) {
-  .game-board {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (min-width: 601px) and (max-width: 900px) {
-  .game-board {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-@media (min-width: 901px) {
-  .game-board {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
 }
