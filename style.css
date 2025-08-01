@@ -1,154 +1,135 @@
 body {
-  font-family: "微軟正黑體", sans-serif;
-  background-color: #0f111d;
+  margin: 0;
+  font-family: "Microsoft JhengHei", sans-serif;
+  background-color: #0f111a;
   color: white;
   text-align: center;
-  margin: 0;
-  padding: 20px;
 }
 
 h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
-.controls button {
-  padding: 10px 20px;
-  margin: 5px;
-  background-color: #37cfff;
-  color: black;
+button {
+  font-size: 1.2rem;
+  margin: 0.3rem;
+  padding: 0.6rem 1.2rem;
   border: none;
-  border-radius: 8px;
-  font-size: 1em;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.status {
-  margin: 20px 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+button:active {
+  transform: scale(0.96);
 }
 
-.score {
-  font-size: 1.2em;
-  padding: 12px 20px;
-  border-radius: 10px;
-  min-width: 150px;
-  text-align: center;
-}
-
-.score.blue {
-  background-color: #1d8cf8;
+.blue {
+  background-color: #2196f3;
   color: white;
 }
 
-.score.red {
-  background-color: #d32f2f;
+.red {
+  background-color: #f44336;
   color: white;
 }
 
-.team-status {
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-weight: bold;
-  min-width: 150px;
-  text-align: center;
-  background-color: #1e1e1e;
-  border: 3px solid transparent;
+#scoreBoard {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.team-status.blue-turn {
-  border-color: #1d8cf8;
+#turnIndicator,
+#timer {
+  font-size: 1rem;
+  margin: 0.3rem 0;
 }
 
-.team-status.red-turn {
-  border-color: #d32f2f;
-}
-
-.timer {
-  background-color: #3e3e3e;
-  padding: 12px 20px;
-  border-radius: 10px;
-  min-width: 150px;
-  text-align: center;
-}
-
-.game-board {
+#gameBoard {
   display: grid;
+  gap: 0.8rem;
   justify-content: center;
-  gap: 16px;
-  margin-top: 20px;
+  margin: 1.2rem auto;
 }
 
 .card {
-  width: 100px;
-  height: 120px;
-  background-color: #111829;
-  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  background-color: #1e1e2f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
   cursor: pointer;
+  user-select: none;
   position: relative;
-  perspective: 1000px;
-  transition: transform 0.5s;
 }
 
 .card img {
-  width: 100%;
-  height: 100%;
+  max-width: 70%;
+  max-height: 70%;
   object-fit: contain;
 }
 
-.card .checkmark {
-  position: absolute;
-  bottom: 6px;
-  right: 6px;
-  color: #00ff99;
-  font-size: 22px;
-  display: none;
+.card.flipped {
+  background-color: #333;
 }
 
-.card.matched .checkmark {
-  display: block;
+#result {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
+/* 響應式設計 */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #gameBoard {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 0.6rem;
+    padding: 0 1rem;
+  }
+
+  .card {
+    width: 70px;
+    height: 70px;
+  }
 }
 
-.popup-content {
-  background-color: #fff;
-  color: #000;
-  padding: 20px 30px;
-  border-radius: 10px;
-  text-align: center;
-  max-width: 300px;
-}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.3rem;
+  }
 
-.popup img {
-  width: 100px;
-  margin-bottom: 10px;
-}
+  button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
 
-.popup button {
-  margin-top: 12px;
-  padding: 8px 16px;
-  background-color: #1d8cf8;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
+  #gameBoard {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
 
-.hidden {
-  display: none;
+  .card {
+    width: 60px;
+    height: 60px;
+  }
+
+  #scoreBoard,
+  #turnIndicator,
+  #timer {
+    font-size: 0.9rem;
+  }
 }
