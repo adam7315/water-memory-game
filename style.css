@@ -80,12 +80,13 @@ h1 {
   background-color: #3e3e3e;
 }
 
-.game-board {
+#gameBoard {
   display: grid;
-  grid-template-columns: repeat(4, 80px);
-  gap: 10px;
-  justify-content: center;
+  gap: 12px;
+  justify-content: center; /* 這是關鍵 */
+  align-items: center;
   margin: 20px auto;
+  padding-bottom: 40px;
 }
 
 .card {
