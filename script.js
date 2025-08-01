@@ -32,10 +32,6 @@ function startGame(pairCount) {
   const selected = cardData.slice(0, pairCount);
   const fullDeck = [...selected, ...selected].sort(() => 0.5 - Math.random());
 
-  const columnCount = pairCount === 4 ? 4 : Math.ceil(Math.sqrt(pairCount * 2));
-  board.style.gridTemplateColumns = ""; // 改由 CSS 控制欄數
-
-
   fullDeck.forEach(data => {
     const card = document.createElement("div");
     card.className = "card";
