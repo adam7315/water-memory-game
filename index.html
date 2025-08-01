@@ -10,22 +10,22 @@
   <h1>水資源記憶配對遊戲</h1>
 
   <div class="controls">
-    <button onclick="startGame(4)">簡單模式（4對）</button>
-    <button onclick="startGame(6)">中等模式（6對）</button>
-    <button onclick="startGame(8)">進階模式（8對）</button>
+    <button onclick="startGame(4)">簡單</button>
+    <button onclick="startGame(6)">中等</button>
+    <button onclick="startGame(8)">進階</button>
   </div>
 
   <div class="status">
-    <div class="score blue">藍隊得分：<span id="scoreBlue">0</span></div>
-    <div class="score red">紅隊得分：<span id="scoreRed">0</span></div>
+    <div class="score blue">藍隊：<span id="scoreBlue">0</span></div>
+    <div class="score red">紅隊：<span id="scoreRed">0</span></div>
     <div id="teamStatus" class="team-status blue-turn">目前回合：<span id="currentTeam">藍隊</span></div>
-    <div class="timer">經過時間：<span id="timer">0</span> 秒</div>
+    <div class="timer">時間：<span id="timer">0</span> 秒</div>
   </div>
 
   <div id="gameBoard" class="game-board"></div>
 
   <div id="popup" class="popup hidden">
-    <div id="popup-content"></div>
+    <div id="popup-content" class="popup-content"></div>
   </div>
 
   <script src="script.js"></script>
