@@ -8,10 +8,14 @@ body {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 6vw; /* 響應式字體大小 */
   margin: 10px auto;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
+
 
 .controls {
   display: flex;
