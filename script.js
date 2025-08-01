@@ -11,10 +11,10 @@ const cardData = [
   { name: "河川", img: "river.png", info: "河川是地表水的重要來源，也是許多生態的棲息地。" },
   { name: "海水淡化", img: "desalination.png", info: "海水經過機器處理，把鹽分去除後就變成可以使用的淡水，是穩定的備援水源，幫助缺水地區解渴。" },
   { name: "地下水", img: "groundwater.png", info: "地下水是藏在地表以下、土壤或岩石孔隙和裂隙中的水寶藏，可以鑽井適度抽起來使用。" },
-  { name: "伏流水", img: "infiltration.png", info: "伏流水是河川下方的地下水，取水設施容易建造。" },
-  { name: "埤塘", img: "pond.png", info: "埤塘可蓄水與灌溉，為早期農村重要的水資源。" },
-  { name: "雨水回收", img: "rainwater.png", info: "透過設施收集雨水，可再利用於非飲用用途。" },
-  { name: "再生水", img: "reclaimed.png", info: "將污水淨化再利用，是新興的替代水源方式。" }
+  { name: "伏流水", img: "infiltration.png", info: "伏流水是河床下的地下水，常用於簡易取水設施。" },
+  { name: "埤塘", img: "pond.png", info: "埤塘可蓄水灌溉，是早期農業的重要水源。" },
+  { name: "雨水回收", img: "rainwater.png", info: "收集雨水再利用，可用於澆花或清洗等非飲用途。" },
+  { name: "再生水", img: "reclaimed.png", info: "再生水是將污水處理淨化後再利用，屬替代水源。" }
 ];
 
 function startGame(pairCount) {
@@ -32,13 +32,26 @@ function startGame(pairCount) {
   const selected = cardData.slice(0, pairCount);
   const fullDeck = [...selected, ...selected].sort(() => 0.5 - Math.random());
 
+  board.style.gridTemplateColumns = `repeat(4, 80px)`;
+
   fullDeck.forEach(data => {
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.name = data.name;
     card.dataset.img = data.img;
     card.dataset.info = data.info;
-    card.innerHTML = `<img src="img/back.png" /><div class="checkmark">✔</div>`;
+
+    const img = document.createElement("img");
+    img.src = "img/back.png";
+    img.onload = () => {}; // 防止資源載入錯誤
+
+    const checkmark = document.createElement("div");
+    checkmark.className = "checkmark";
+    checkmark.textContent = "✔";
+
+    card.appendChild(img);
+    card.appendChild(checkmark);
+
     card.addEventListener("click", () => flipCard(card));
     board.appendChild(card);
   });
@@ -51,7 +64,8 @@ function startGame(pairCount) {
 function flipCard(card) {
   if (card.classList.contains("flipped") || flippedCards.length === 2) return;
 
-  card.querySelector("img").src = `img/${card.dataset.img}`;
+  const img = card.querySelector("img");
+  img.src = `img/${card.dataset.img}`;
   card.classList.add("flipped");
   flippedCards.push(card);
 
@@ -66,8 +80,9 @@ function flipCard(card) {
       matchedPairs++;
       if (matchedPairs === totalPairs) {
         clearInterval(timerInterval);
-        alert("遊戲結束！");
+        setTimeout(() => alert("🎉 遊戲結束！"), 300);
       }
+      flippedCards = [];
     } else {
       setTimeout(() => {
         first.querySelector("img").src = "img/back.png";
@@ -110,7 +125,7 @@ function showPopup(title, info, img) {
     <img src="img/${img}" alt="${title}" />
     <h3>${title}</h3>
     <p>${info}</p>
-    <button onclick="closePopup()">我已閱讀，下一步</button>
+    <button onclick="closePopup()">我已閱讀</button>
   `;
   popup.classList.remove("hidden");
 }
