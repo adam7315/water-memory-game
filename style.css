@@ -8,34 +8,43 @@ body {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2.2em;
   margin-bottom: 10px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .controls button {
   padding: 10px 20px;
-  margin: 5px;
   background-color: #37cfff;
   color: black;
   border: none;
   border-radius: 8px;
   font-size: 1em;
   cursor: pointer;
+  flex: 1 1 100px;
+  max-width: 200px;
 }
 
 .status {
   margin: 20px 0;
   display: flex;
   justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
-.score {
-  font-size: 1.2em;
-  padding: 12px 20px;
+.score, .team-status, .timer {
+  font-size: 1em;
+  padding: 10px 16px;
   border-radius: 10px;
-  min-width: 150px;
+  min-width: 130px;
   text-align: center;
 }
 
@@ -50,13 +59,9 @@ h1 {
 }
 
 .team-status {
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-weight: bold;
-  min-width: 150px;
-  text-align: center;
   background-color: #1e1e1e;
   border: 3px solid transparent;
+  font-weight: bold;
 }
 
 .team-status.blue-turn {
@@ -69,22 +74,22 @@ h1 {
 
 .timer {
   background-color: #3e3e3e;
-  padding: 12px 20px;
-  border-radius: 10px;
-  min-width: 150px;
-  text-align: center;
+  color: white;
 }
 
 .game-board {
   display: grid;
+  gap: 12px;
   justify-content: center;
-  gap: 16px;
   margin-top: 20px;
+  padding-bottom: 40px;
 }
 
+/* 預設卡片尺寸 */
 .card {
-  width: 100px;
-  height: 120px;
+  width: 22vw;
+  max-width: 100px;
+  aspect-ratio: 5 / 6;
   background-color: #111829;
   border-radius: 10px;
   cursor: pointer;
@@ -104,7 +109,7 @@ h1 {
   bottom: 6px;
   right: 6px;
   color: #00ff99;
-  font-size: 22px;
+  font-size: 20px;
   display: none;
 }
 
@@ -151,4 +156,21 @@ h1 {
 
 .hidden {
   display: none;
+}
+
+/* 🎯 響應式卡片排列數量（根據螢幕寬度自動調整列數） */
+@media (max-width: 600px) {
+  .game-board {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  .game-board {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 901px) {
+  .game-board {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
 }
