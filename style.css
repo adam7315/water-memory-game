@@ -1,103 +1,121 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: "Microsoft JhengHei", sans-serif;
+  padding: 0;
+}
+
+body {
   background-color: #0f111a;
   color: white;
-  text-align: center;
+  font-family: "Noto Sans TC", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  min-height: 100vh;
 }
 
 h1 {
   font-size: 2rem;
-  margin-top: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.4;
 }
 
 button {
-  font-size: 1.2rem;
   margin: 0.3rem;
   padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
 }
 
-button:active {
-  transform: scale(0.96);
+button:hover {
+  opacity: 0.9;
 }
 
-.blue {
-  background-color: #2196f3;
-  color: white;
-}
-
-.red {
-  background-color: #f44336;
-  color: white;
+#scoreBoard, #turnInfo, #timer {
+  margin: 0.3rem;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
 }
 
 #scoreBoard {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-#turnIndicator,
+#blueScore {
+  background-color: #2196f3;
+  color: white;
+  margin: 0.3rem;
+}
+
+#redScore {
+  background-color: #f44336;
+  color: white;
+  margin: 0.3rem;
+}
+
+#turnInfo {
+  background-color: #1e1e1e;
+  border: 2px solid #2196f3;
+}
+
 #timer {
-  font-size: 1rem;
-  margin: 0.3rem 0;
+  background-color: #444;
 }
 
 #gameBoard {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.6rem;
   justify-content: center;
-  margin: 1.2rem auto;
+  margin-top: 1rem;
 }
 
 .card {
   width: 80px;
   height: 80px;
-  background-color: #1e1e2f;
-  border-radius: 8px;
+  background-color: #222;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
   cursor: pointer;
-  user-select: none;
-  position: relative;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.3s;
 }
 
 .card img {
-  max-width: 70%;
-  max-height: 70%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
+.card:hover {
+  transform: scale(1.05);
+}
+
 .card.flipped {
-  background-color: #333;
+  background-color: #000;
 }
 
-#result {
-  margin-top: 1rem;
-  font-size: 1.4rem;
-  font-weight: bold;
+@media (min-width: 1024px) {
+  #gameBoard {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
 }
 
-/* 響應式設計 */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  button {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-  }
-
+@media (min-width: 768px) and (max-width: 1023px) {
   #gameBoard {
     grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 0.6rem;
-    padding: 0 1rem;
   }
 
   .card {
@@ -106,30 +124,36 @@ button:active {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   h1 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem;
   }
 
   #gameBoard {
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
-    padding: 0 0.5rem;
   }
 
   .card {
-    width: 60px;
-    height: 60px;
+    width: 100%;
+    padding-top: 100%; /* 方形卡片 */
+    position: relative;
   }
 
-  #scoreBoard,
-  #turnIndicator,
-  #timer {
-    font-size: 0.9rem;
+  .card > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
