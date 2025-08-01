@@ -9,8 +9,8 @@ let startTime;
 const cardData = [
   { name: "水庫", img: "reservoir.png", info: "水庫可以儲存雨水，穩定供應民生與農業用水。" },
   { name: "河川", img: "river.png", info: "河川是地表水的重要來源，也是許多生態的棲息地。" },
-  { name: "海水淡化", img: "desalination.png", info: "透過技術將海水變為可飲用水，是近年熱門的備援水源。" },
-  { name: "地下水", img: "groundwater.png", info: "儲存在地底的水，是農業與民生用水的重要來源。" },
+  { name: "海水淡化", img: "desalination.png", info: "海水經過機器處理，把鹽分去除後就變成可以使用的淡水，是穩定的備援水源，幫助缺水地區解渴。" },
+  { name: "地下水", img: "groundwater.png", info: "地下水是藏在地表以下、土壤或岩石孔隙和裂隙中的水寶藏，可以鑽井適度抽起來使用。" },
   { name: "伏流水", img: "infiltration.png", info: "伏流水是河川下方的地下水，取水設施容易建造。" },
   { name: "埤塘", img: "pond.png", info: "埤塘可蓄水與灌溉，為早期農村重要的水資源。" },
   { name: "雨水回收", img: "rainwater.png", info: "透過設施收集雨水，可再利用於非飲用用途。" },
