@@ -8,9 +8,14 @@ body {
 }
 
 h1 {
-  font-size: 2em;
-  margin: 10px auto;
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* 響應式字體大小 */
+  margin: 20px auto;
   white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
 }
 
 
