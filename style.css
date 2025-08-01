@@ -8,13 +8,11 @@ body {
 }
 
 h1 {
-  font-size: 6vw; /* 響應式字體大小 */
+  font-size: 2em;
   margin: 10px auto;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
 }
+
 
 
 .controls {
