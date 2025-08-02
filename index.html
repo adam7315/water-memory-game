@@ -1,0 +1,36 @@
+<!DOCTYPE html> <!-- 告訴瀏覽器這是一個 HTML5 文件 -->
+<html lang="zh-Hant"> <!-- 設定 HTML 語言為繁體中文 -->
+<head>
+  <meta charset="UTF-8" /> <!-- 設定網頁的字元編碼為 UTF-8，支援多國語言 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- 手機裝置響應式設定 -->
+  <title>水資源記憶配對遊戲</title> <!-- 設定網頁標題，會顯示在瀏覽器分頁上 -->
+  <link rel="stylesheet" href="style.css" /> <!-- 引入外部的 CSS 樣式檔 -->
+</head>
+
+<body> <!-- 網頁主要內容開始 -->
+
+  <h1>水資源記憶配對遊戲</h1> <!-- 網頁主標題 -->
+
+  <div class="controls"> <!-- 控制區：用來選擇遊戲難度 -->
+    <button onclick="startGame(4)">簡單</button> <!-- 簡單模式（4對卡牌） -->
+    <button onclick="startGame(6)">中等</button> <!-- 中等模式（6對卡牌） -->
+    <button onclick="startGame(8)">進階</button> <!-- 進階模式（8對卡牌） -->
+  </div>
+
+  <div class="status"> <!-- 狀態區：顯示分數、目前回合與時間 -->
+    <div class="score blue">藍隊：<span id="scoreBlue">0</span></div> <!-- 顯示藍隊分數 -->
+    <div class="score red">紅隊：<span id="scoreRed">0</span></div> <!-- 顯示紅隊分數 -->
+    <div id="teamStatus" class="team-status blue-turn">目前回合：<span id="currentTeam">藍隊</span></div> <!-- 顯示目前輪到哪一隊 -->
+    <div class="timer">時間：<span id="timer">0</span> 秒</div> <!-- 顯示遊戲經過時間 -->
+  </div>
+
+  <div id="gameBoard" class="game-board"></div> <!-- 遊戲區：卡牌會顯示在這個區域 -->
+
+  <div id="popup" class="popup hidden"> <!-- 彈窗區塊：配對成功時顯示卡片資訊 -->
+    <div id="popup-content" class="popup-content"></div> <!-- 彈窗內容（圖片與文字） -->
+  </div>
+
+  <script src="script.js"></script> <!-- 引入外部的 JavaScript 腳本檔 -->
+
+</body>
+</html>

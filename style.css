@@ -1,0 +1,212 @@
+/* === 全域設定 === */
+body {
+  background-color: #121212; /* 設定背景為深灰色，營造暗色主題 */
+  color: #fff;               /* 預設文字為白色 */
+  font-family: "Microsoft JhengHei", sans-serif; /* 使用微軟正黑體 */
+  margin: 0;                 /* 移除頁面預設邊界 */
+  padding: 0;                /* 移除內邊距 */
+  text-align: center;        /* 文字置中對齊 */
+}
+
+/* 遊戲標題：響應式字體大小、自動省略超出文字 */
+h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* 根據螢幕大小調整字體大小 */
+  margin: 20px auto;                     /* 上下留白並置中 */
+  white-space: nowrap;                  /* 不換行顯示 */
+  text-align: center;                   /* 置中顯示 */
+  overflow: hidden;                     /* 超出不顯示 */
+  text-overflow: ellipsis;              /* 超出以省略號呈現 */
+  max-width: 100%;                      /* 不超出容器寬度 */
+  display: block;                       /* 以區塊顯示 */
+}
+
+/* === 控制按鈕區 === */
+.controls {
+  margin: 10px 0; /* 上下間距 */
+}
+
+.controls button {
+  padding: 10px 16px;         /* 內邊距，增加可點擊面積 */
+  margin: 5px;                /* 按鈕間距 */
+  background-color: #37cfff; /* 淺藍底色 */
+  color: black;               /* 黑色文字 */
+  border: none;               /* 無邊框 */
+  border-radius: 8px;         /* 圓角 */
+  font-size: 1em;             /* 字體大小為一般文字 */
+  cursor: pointer;            /* 滑鼠移上變手指圖示 */
+}
+
+/* === 狀態列（得分、時間、回合） === */
+.status {
+  display: flex;         /* 使用彈性盒模型 */
+  justify-content: center;  /* 水平置中 */
+  flex-wrap: wrap;       /* 換行排列 */
+  gap: 10px;             /* 元素之間間距 */
+  margin-bottom: 10px;   /* 下方留白 */
+}
+
+.score,
+.timer,
+.team-status {
+  font-size: 1em;         /* 設定字體大小 */
+  padding: 8px 12px;      /* 內邊距 */
+  min-width: 100px;       /* 最小寬度 */
+  border-radius: 10px;    /* 圓角邊框 */
+}
+
+/* 藍隊樣式：有藍色框線、不填滿 */
+.score.blue {
+  background-color: #3e3e3e;   /* 暗色背景 */
+  border: 2px solid #1d8cf8;   /* 藍色外框 */
+  color: white;                /* 白色文字 */
+}
+
+/* 紅隊樣式：有紅色框線、不填滿 */
+.score.red {
+  background-color: #3e3e3e;   /* 暗色背景 */
+  border: 2px solid #d32f2f;   /* 紅色外框 */
+  color: white;                /* 白色文字 */
+}
+
+/* 回合狀態顯示 */
+.team-status {
+  background-color: #1e1e1e;   /* 暗色底 */
+  border: 3px solid transparent; /* 預設無邊框 */
+}
+
+/* 輪到藍隊時的樣式：藍色底 */
+.team-status.blue-turn {
+  background-color: #1d8cf8 !important; /* 藍底（提示藍隊回合） */
+  color: white;                         /* 白色文字 */
+}
+
+/* 輪到紅隊時的樣式：紅色底 */
+.team-status.red-turn {
+  background-color: #d32f2f !important; /* 紅底（提示紅隊回合） */
+  color: white;                         /* 白色文字 */
+}
+
+/* 時間樣式 */
+.timer {
+  background-color: #3e3e3e; /* 深灰底，與其他元件一致 */
+}
+
+/* === 遊戲區域與卡牌樣式 === */
+#gameBoard {
+  display: grid;            /* 使用格線排列卡牌 */
+  gap: 12px;                /* 卡牌間距 */
+  justify-content: center; /* 水平置中卡牌 */
+  align-items: center;      /* 垂直置中 */
+  margin: 20px auto;        /* 上下留白，左右置中 */
+  padding-bottom: 40px;     /* 頁面底部留空，避免擠壓其他元件 */
+}
+
+/* 卡牌外觀 */
+.card {
+  width: 100px;           /* 卡牌寬度 */
+  height: 120px;          /* 卡牌高度 */
+  background-color: #222; /* 深色卡牌底 */
+  border: 2px solid #444; /* 淺灰邊框 */
+  border-radius: 10px;    /* 圓角 */
+  overflow: hidden;       /* 超出範圍隱藏 */
+  cursor: pointer;        /* 滑鼠為手型 */
+  position: relative;     /* 為了內部絕對定位元素 */
+}
+
+/* 卡牌圖片填滿 */
+.card img {
+  width: 100%;        /* 圖片填滿卡牌寬度 */
+  height: 100%;       /* 圖片填滿卡牌高度 */
+  object-fit: cover;  /* 保持比例裁切填滿 */
+}
+
+/* 勾勾提示圖示：初始不顯示 */
+.card .checkmark {
+  display: none;       /* 預設不顯示勾勾 */
+  position: absolute;  /* 絕對定位於卡牌右上 */
+  top: 4px;
+  right: 6px;
+  font-size: 20px;     /* 勾勾大小 */
+  color: lime;         /* 勾勾顏色為亮綠 */
+  z-index: 2;          /* 顯示在最上層 */
+}
+
+/* 成功配對後顯示勾勾 */
+.card.matched .checkmark {
+  display: block; /* 正確配對才顯示勾勾 */
+}
+
+/* === 配對成功的說明彈窗 === */
+.popup {
+  position: fixed;              /* 固定在畫面上 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;                 /* 滿版覆蓋 */
+  background-color: rgba(0, 0, 0, 0.92); /* 更深的半透明黑底，幾乎全黑 */
+  display: flex;                /* 使用 flex 排版 */
+  justify-content: center;     /* 水平置中 */
+  align-items: center;         /* 垂直置中 */
+  z-index: 9999;               /* 提高層級，確保在所有元素之上 */
+}
+
+
+.popup-content {
+  background-color: #fff;   /* 白色背景 */
+  color: #000;              /* 黑色文字 */
+  padding: 20px;            /* 內邊距 */
+  border-radius: 10px;      /* 圓角 */
+  max-width: 90%;           /* 最多佔 90% 寬度 */
+  width: 300px;             /* 預設寬 300px */
+  text-align: center;       /* 內容置中 */
+}
+
+.popup img {
+  width: 100%;      /* 圖片滿版 */
+  height: auto;     /* 高度自動調整 */
+}
+
+.hidden {
+  display: none; /* 隱藏元素用的 class */
+}
+
+/* === 桌機版設定（寬度較大） === */
+@media (min-width: 769px) {
+  .game-board {
+    grid-template-columns: repeat(4, 1fr); /* 每列 4 欄 */
+    gap: 15px;                             /* 間距調整為 15px */
+    max-width: 520px;                      /* 最大寬度限制 */
+    margin: 0 auto;                        /* 置中 */
+    justify-content: center;              /* 保險置中 */
+  }
+
+  .card {
+    width: 110px;  /* 桌機卡牌寬度 */
+    height: 120px; /* 桌機卡牌高度 */
+  }
+}
+
+/* === 手機版設定（寬度較小） === */
+@media (max-width: 768px) {
+  .game-board {
+    grid-template-columns: repeat(4, 1fr); /* 每列四張 */
+    gap: 8px;                              /* 間距稍小 */
+    max-width: 360px;                      /* 最寬為360px */
+    margin: 0 auto;                        /* 左右置中 */
+    justify-content: center;              /* 保險置中 */
+  }
+
+  .card {
+    width: 80px;   /* 卡牌寬度較小 */
+    height: 100px; /* 卡牌高度較小 */
+  }
+
+  button {
+    font-size: 14px;        /* 按鈕文字較小 */
+    padding: 6px 10px;      /* 內邊距較小 */
+  }
+
+  h1 {
+    font-size: 20px; /* 標題較小 */
+  }
+}
