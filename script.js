@@ -24,10 +24,23 @@ const cardData = [
 // 音效系統（Web Audio API，不需外部音檔）
 // ─────────────────────────────────────────────
 let audioCtx = null;
+let audioReady = false;
 let bgmMuted = false;
 let bgmActive = false;
 let bgmNoteIndex = 0;
 let bgmTimeout = null;
+
+// 瀏覽器要求：AudioContext 必須在使用者點擊後才能播放
+// 在第一次點擊時建立並解鎖，後續所有音效才能正常運作
+function unlockAudio() {
+  if (audioReady) return;
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  audioCtx.resume().then(() => { audioReady = true; });
+}
+document.addEventListener('click',      unlockAudio, { once: true });
+document.addEventListener('touchstart', unlockAudio, { once: true });
 
 function getAudioCtx() {
   if (!audioCtx) {
